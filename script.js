@@ -1,6 +1,29 @@
+const buttonContainer = document.querySelector(".btn-container");
+const numberButtons = buttonContainer.querySelectorAll(".number");
+const operatorButtons = buttonContainer.querySelectorAll(".operator");
+
 let operator = "";
 let firstOperand = "";
 let secondOperand = "";
+
+numberButtons.forEach((numberButton) => {
+    numberButton.addEventListener("click", (e) => {
+        if (firstOperand === "" || operator === "") {
+            firstOperand = e.target.textContent;
+            console.log(firstOperand);
+        } else {
+            secondOperand = e.target.textContent;
+            console.log(secondOperand);
+        }
+    });
+});
+
+operatorButtons.forEach((operatorButton) => {
+    operatorButton.addEventListener("click", (e) => {
+        operator = e.target.textContent;
+        console.log(operator);
+    });
+});
 
 function operate(firstOperand, secondOperand, operator) {
     switch (operator) {
