@@ -1,6 +1,7 @@
 const buttonContainer = document.querySelector(".btn-container");
 const numberButtons = buttonContainer.querySelectorAll(".number");
 const operatorButtons = buttonContainer.querySelectorAll(".operator");
+let mainDisplay = document.querySelector("#display");
 
 let operator = "";
 let firstOperand = "";
@@ -10,9 +11,10 @@ numberButtons.forEach((numberButton) => {
     numberButton.addEventListener("click", (e) => {
         if (firstOperand === "" || operator === "") {
             firstOperand = e.target.textContent;
-            console.log(firstOperand);
+            renderFirstOperand(firstOperand, secondOperand);
         } else {
             secondOperand = e.target.textContent;
+            renderSecondOperand(secondOperand);
             console.log(secondOperand);
         }
     });
@@ -21,9 +23,22 @@ numberButtons.forEach((numberButton) => {
 operatorButtons.forEach((operatorButton) => {
     operatorButton.addEventListener("click", (e) => {
         operator = e.target.textContent;
+        renderOperator(operator);
         console.log(operator);
     });
 });
+
+function renderFirstOperand(firstOperand) {
+    return (mainDisplay.textContent += firstOperand);
+}
+
+function renderSecondOperand(secondOperand) {
+    return (mainDisplay.textContent += secondOperand);
+}
+
+function renderOperator(operator) {
+    return (mainDisplay.textContent += operator);
+}
 
 function operate(firstOperand, secondOperand, operator) {
     switch (operator) {
