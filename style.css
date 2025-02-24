@@ -53,3 +53,7 @@ body {
     flex: 0.3 0 40%;
     border-radius: 20px;
 }
+
+hr {
+    color: azure;
+}
