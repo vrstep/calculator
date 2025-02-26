@@ -9,13 +9,6 @@ let operator = null;
 let firstOperand = null;
 let secondOperand = "";
 
-
-function calculate(firstOperand, secondOperand) {
-    result = operate(firstOperand, secondOperand);
-    firstOperand = result;
-    secondOperand = 0;
-}
-
 numberButtons.forEach(button => {
     button.addEventListener("click", (e) => {
         getNum(e.target.textContent);
@@ -50,20 +43,6 @@ function getOp(op) {
 equalsButton.addEventListener("click", () => {
     console.log(operate(firstOperand, secondOperand, operator));
 });
-
-// function renderFirstOperand(firstOperand) {
-//     return (mainDisplay.textContent = firstOperand);
-// }
-
-// function renderSecondOperand(secondOperand) {
-//     return (mainDisplay.textContent = secondOperand);
-// }
-
-// function renderOperator(operator) {
-//     return (mainDisplay.textContent += operator);
-// }
-
-
 
 function operate(firstOperand, secondOperand, operator) {
     switch (operator) {
