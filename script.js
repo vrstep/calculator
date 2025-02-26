@@ -19,13 +19,12 @@ function calculate(firstOperand, secondOperand) {
 numberButtons.forEach(button => {
     button.addEventListener("click", (e) => {
         getNum(e.target.textContent);
-        console.log(getNum(e.target.textContent))
     });
-})
+});
 
 operatorButtons.forEach((operatorButton) => {
     operatorButton.addEventListener("click", (e) => {
-        operator = e.target.textContent;
+        getOp(e.target.textContent);
     });
 });
 
@@ -33,6 +32,19 @@ function getNum(num) {
     secondOperand += num;
     secondOperand = parseFloat(secondOperand);
     displaySecondOperand.textContent = secondOperand;   
+}
+
+function getOp(op) {
+    if (operator === null) {
+        firstOperand = secondOperand;
+    } else if (firstOperand !== null) {
+        firstOperand = operate(firstOperand, secondOperand, operator);
+    }
+
+    displayFirstOperand.textContent = firstOperand + " " + op;
+    operator = op;
+    secondOperand = "";
+    displaySecondOperand.innerHTML = "0";
 }
 
 equalsButton.addEventListener("click", () => {
