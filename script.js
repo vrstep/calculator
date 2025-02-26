@@ -1,44 +1,43 @@
 const buttonContainer = document.querySelector(".btn-container");
 const numberButtons = buttonContainer.querySelectorAll(".number");
 const operatorButtons = buttonContainer.querySelectorAll(".operator");
-let mainDisplay = document.querySelector("#display");
+const mainDisplay = document.querySelector("#display");
+const equalsButton = document.querySelector("#equal");
 
-let operator = "";
-let firstOperand = "";
+let operator = null;
+let firstOperand = null;
 let secondOperand = "";
 
-numberButtons.forEach((numberButton) => {
-    numberButton.addEventListener("click", (e) => {
-        if (firstOperand === "" || operator === "") {
-            firstOperand = e.target.textContent;
-            renderFirstOperand(firstOperand, secondOperand);
-        } else {
-            secondOperand = e.target.textContent;
-            renderSecondOperand(secondOperand);
-            console.log(secondOperand);
-        }
-    });
-});
+
+function calculate(firstOperand, secondOperand) {
+    result = operate(firstOperand, secondOperand);
+    firstOperand = result;
+    secondOperand = 0;
+}
 
 operatorButtons.forEach((operatorButton) => {
     operatorButton.addEventListener("click", (e) => {
         operator = e.target.textContent;
-        renderOperator(operator);
-        console.log(operator);
     });
 });
 
-function renderFirstOperand(firstOperand) {
-    return (mainDisplay.textContent += firstOperand);
-}
+equalsButton.addEventListener("click", () => {
+    console.log(operate(firstOperand, secondOperand, operator));
+});
 
-function renderSecondOperand(secondOperand) {
-    return (mainDisplay.textContent += secondOperand);
-}
+// function renderFirstOperand(firstOperand) {
+//     return (mainDisplay.textContent = firstOperand);
+// }
 
-function renderOperator(operator) {
-    return (mainDisplay.textContent += operator);
-}
+// function renderSecondOperand(secondOperand) {
+//     return (mainDisplay.textContent = secondOperand);
+// }
+
+// function renderOperator(operator) {
+//     return (mainDisplay.textContent += operator);
+// }
+
+
 
 function operate(firstOperand, secondOperand, operator) {
     switch (operator) {
