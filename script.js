@@ -16,11 +16,24 @@ function calculate(firstOperand, secondOperand) {
     secondOperand = 0;
 }
 
+numberButtons.forEach(button => {
+    button.addEventListener("click", (e) => {
+        getNum(e.target.textContent);
+        console.log(getNum(e.target.textContent))
+    });
+})
+
 operatorButtons.forEach((operatorButton) => {
     operatorButton.addEventListener("click", (e) => {
         operator = e.target.textContent;
     });
 });
+
+function getNum(num) {
+    secondOperand += num;
+    secondOperand = parseFloat(secondOperand);
+    displaySecondOperand.textContent = secondOperand;   
+}
 
 equalsButton.addEventListener("click", () => {
     console.log(operate(firstOperand, secondOperand, operator));
