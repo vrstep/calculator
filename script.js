@@ -57,9 +57,8 @@ function getLastElement(arr) {
 }
 
 equalsButton.addEventListener("click", () => {
-    displayResultMain.textContent = firstOperand;
+    displayResultMain.textContent = operate(firstOperand, secondOperand, operator);
     displayPreviewResult.textContent = "";
-    console.log(operate(firstOperand, secondOperand, operator));
 });
 
 function operate(firstOperand, secondOperand, operator) {
