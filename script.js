@@ -1,6 +1,8 @@
 const buttonContainer = document.querySelector(".btn-container");
 const numberButtons = buttonContainer.querySelectorAll(".number");
 const operatorButtons = buttonContainer.querySelectorAll(".operator");
+let displayResultMain = document.querySelector(".resultt-main");
+let displayPreviewResult = document.querySelector("#result-preview");
 const displayFirstOperand = document.querySelector(".first-operand");
 const displaySecondOperand = document.querySelector(".second-operand");
 const equalsButton = document.querySelector("#equal");
@@ -8,6 +10,8 @@ const equalsButton = document.querySelector("#equal");
 let operator = null;
 let firstOperand = null;
 let secondOperand = "";
+
+let arithmetic = [];
 
 numberButtons.forEach(button => {
     button.addEventListener("click", (e) => {
@@ -24,7 +28,10 @@ operatorButtons.forEach((operatorButton) => {
 function getNum(num) {
     secondOperand += num;
     secondOperand = parseFloat(secondOperand);
-    displaySecondOperand.textContent = secondOperand;   
+    
+    displayResultMain.textContent = addArithmetic(num);
+
+    displayPreviewResult.textContent = operate(firstOperand, secondOperand, operator);
 }
 
 function getOp(op) {
@@ -34,13 +41,24 @@ function getOp(op) {
         firstOperand = operate(firstOperand, secondOperand, operator);
     }
 
-    displayFirstOperand.textContent = firstOperand + " " + op;
     operator = op;
     secondOperand = "";
-    displaySecondOperand.innerHTML = "0";
+    displayResultMain.textContent = addArithmetic(operator);
+    console.log("finish")
+}
+
+function addArithmetic(target) {
+    arithmetic.push(target);
+    return result = arithmetic.join("");
+}
+
+function getLastElement(arr) {
+    return arr[arr.length - 1];
 }
 
 equalsButton.addEventListener("click", () => {
+    displayResultMain.textContent = firstOperand;
+    displayPreviewResult.textContent = "";
     console.log(operate(firstOperand, secondOperand, operator));
 });
 
