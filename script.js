@@ -6,6 +6,7 @@ let displayPreviewResult = document.querySelector("#result-preview");
 const displayFirstOperand = document.querySelector(".first-operand");
 const displaySecondOperand = document.querySelector(".second-operand");
 const equalsButton = document.querySelector("#equal");
+const clearButton = document.querySelector("#clear-btn");
 
 let operator = null;
 let firstOperand = null;
@@ -44,7 +45,6 @@ function getOp(op) {
     operator = op;
     secondOperand = "";
     displayResultMain.textContent = addArithmetic(operator);
-    console.log("finish")
 }
 
 function addArithmetic(target) {
@@ -59,6 +59,16 @@ function getLastElement(arr) {
 equalsButton.addEventListener("click", () => {
     displayResultMain.textContent = operate(firstOperand, secondOperand, operator);
     displayPreviewResult.textContent = "";
+});
+
+
+clearButton.addEventListener("click", () => {
+    displayResultMain.textContent = "";
+    displayPreviewResult.textContent = "";
+    firstOperand = null;
+    secondOperand = "";
+    operator = null;
+    arithmetic = [];
 });
 
 function operate(firstOperand, secondOperand, operator) {
