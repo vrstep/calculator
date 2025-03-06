@@ -57,3 +57,13 @@ body {
 hr {
     color: azure;
 }
+
+#delete-btn {
+    border: none;
+    background: none;
+}
+
+.delete-svg {
+    width: 20px;
+    height: 20px;
+}
