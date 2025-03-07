@@ -7,6 +7,7 @@ const displayFirstOperand = document.querySelector(".first-operand");
 const displaySecondOperand = document.querySelector(".second-operand");
 const equalsButton = document.querySelector("#equal");
 const clearButton = document.querySelector("#clear-btn");
+const deleteButton = document.querySelector("#delete-btn");
 
 let operator = null;
 let firstOperand = null;
@@ -69,6 +70,12 @@ clearButton.addEventListener("click", () => {
     secondOperand = "";
     operator = null;
     arithmetic = [];
+});
+
+deleteButton.addEventListener("click", () => {
+    console.log("lesgo");
+    arithmetic.pop();
+    displayResultMain.textContent = arithmetic;
 });
 
 function operate(firstOperand, secondOperand, operator) {
