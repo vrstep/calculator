@@ -5,6 +5,7 @@ const displayFirstOperand = document.querySelector(".first-operand");
 const displaySecondOperand = document.querySelector(".second-operand");
 const displayCalculation = document.querySelector("#display-calculation");
 const equalsButton = document.querySelector("#equal");
+const clearButton = document.querySelector("#clear-btn");
 
 let operator = null;
 let firstOperand = null;
@@ -50,6 +51,17 @@ equalsButton.addEventListener("click", () => {
   displayFirstOperand.textContent = "";
   displaySecondOperand.textContent = "";
   console.log(operate(firstOperand, secondOperand, operator));
+});
+
+clearButton.addEventListener("click", () => {
+  console.log("works1");
+  let operator = null;
+  let firstOperand = null;
+  let secondOperand = "";
+
+  displayCalculation.textContent = "";
+  displayFirstOperand.textContent = "";
+  displaySecondOperand.textContent = "";
 });
 
 function operate(firstOperand, secondOperand, operator) {
