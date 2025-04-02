@@ -32,6 +32,11 @@ function getNum(num) {
 function getOp(op) {
   if (operator === null) {
     firstOperand = secondOperand;
+  } else if (secondOperand === "") {
+    // Replace the operator if user presses a new one consecutively
+    displayFirstOperand.textContent = firstOperand + " " + op;
+    operator = op;
+    return;
   } else if (firstOperand !== null) {
     firstOperand = operate(firstOperand, secondOperand, operator);
   }
