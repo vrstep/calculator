@@ -61,9 +61,9 @@ equalsButton.addEventListener("click", () => {
 
 clearButton.addEventListener("click", () => {
   console.log("works1");
-  let operator = null;
-  let firstOperand = null;
-  let secondOperand = "";
+  operator = null;
+  firstOperand = null;
+  secondOperand = "";
 
   displayCalculation.textContent = "";
   displayFirstOperand.textContent = "";
