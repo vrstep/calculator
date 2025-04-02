@@ -27,6 +27,7 @@ function getNum(num) {
   secondOperand += num;
   secondOperand = parseFloat(secondOperand);
   displaySecondOperand.textContent = secondOperand;
+  displayCalculation.textContent = "";
 }
 
 function getOp(op) {
@@ -45,6 +46,7 @@ function getOp(op) {
   operator = op;
   secondOperand = "";
   displaySecondOperand.innerHTML = "0";
+  displayCalculation.textContent = "";
 }
 
 equalsButton.addEventListener("click", () => {
