@@ -48,14 +48,15 @@ function getOp(op) {
 }
 
 equalsButton.addEventListener("click", () => {
-  displayCalculation.textContent = operate(
-    firstOperand,
-    secondOperand,
-    operator
-  );
+  if (firstOperand && secondOperand && operator) {
+    displayCalculation.textContent = operate(
+      firstOperand,
+      secondOperand,
+      operator
+    );
+  } else return;
   displayFirstOperand.textContent = "";
   displaySecondOperand.textContent = "";
-  console.log(operate(firstOperand, secondOperand, operator));
 });
 
 clearButton.addEventListener("click", () => {
