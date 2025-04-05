@@ -10,6 +10,7 @@ const clearButton = document.querySelector("#clear-btn");
 let operator = null;
 let firstOperand = null;
 let secondOperand = "";
+let calculationResult = 0;
 
 numberButtons.forEach((button) => {
   button.addEventListener("click", (e) => {
@@ -24,6 +25,7 @@ operatorButtons.forEach((operatorButton) => {
 });
 
 function getNum(num) {
+  console.log(secondOperand);
   secondOperand += num;
   secondOperand = parseFloat(secondOperand);
   displaySecondOperand.textContent = secondOperand;
@@ -31,6 +33,9 @@ function getNum(num) {
 }
 
 function getOp(op) {
+  console.log(firstOperand);
+  console.log(secondOperand);
+  console.log(operator);
   if (operator === null) {
     firstOperand = secondOperand;
   } else if (secondOperand === "") {
@@ -44,33 +49,37 @@ function getOp(op) {
 
   displayFirstOperand.textContent = firstOperand + " " + op;
   operator = op;
+  temp = operator;
   secondOperand = "";
   displaySecondOperand.innerHTML = "0";
   displayCalculation.textContent = "";
 }
 
 equalsButton.addEventListener("click", () => {
-  if (firstOperand && secondOperand && operator) {
-    displayCalculation.textContent = operate(
-      firstOperand,
-      secondOperand,
-      operator
-    );
+  if (secondOperand && operator) {
+    calculationResult = operate(firstOperand, secondOperand, operator);
+    displayCalculation.textContent = calculationResult;
   } else return;
   displayFirstOperand.textContent = "";
   displaySecondOperand.textContent = "";
+  console.log(firstOperand);
+  console.log(secondOperand);
 });
 
 clearButton.addEventListener("click", () => {
-  console.log("works1");
+  reset();
+});
+
+function reset() {
   operator = null;
   firstOperand = null;
   secondOperand = "";
+  calculationResult = 0;
 
   displayCalculation.textContent = "";
   displayFirstOperand.textContent = "";
   displaySecondOperand.textContent = "";
-});
+}
 
 function operate(firstOperand, secondOperand, operator) {
   switch (operator) {
