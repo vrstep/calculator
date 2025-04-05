@@ -11,6 +11,7 @@ let operator = null;
 let firstOperand = null;
 let secondOperand = "";
 let calculationResult = 0;
+let justCalculated = false;
 
 numberButtons.forEach((button) => {
   button.addEventListener("click", (e) => {
@@ -25,7 +26,13 @@ operatorButtons.forEach((operatorButton) => {
 });
 
 function getNum(num) {
-  console.log(secondOperand);
+  if (justCalculated) {
+    firstOperand = null; // Reset only after calculation
+    calculationResult = 0;
+    displayCalculation.textContent = "";
+    justCalculated = false; // Clear flag
+  }
+
   secondOperand += num;
   secondOperand = parseFloat(secondOperand);
   displaySecondOperand.textContent = secondOperand;
@@ -33,13 +40,13 @@ function getNum(num) {
 }
 
 function getOp(op) {
-  console.log(firstOperand);
-  console.log(secondOperand);
-  console.log(operator);
+  if (justCalculated) {
+    justCalculated = false; // Clear flag but keep the result as firstOperand
+  }
+
   if (operator === null) {
-    firstOperand = secondOperand;
+    firstOperand = secondOperand || firstOperand;
   } else if (secondOperand === "") {
-    // Replace the operator if user presses a new one consecutively
     displayFirstOperand.textContent = firstOperand + " " + op;
     operator = op;
     return;
@@ -49,7 +56,6 @@ function getOp(op) {
 
   displayFirstOperand.textContent = firstOperand + " " + op;
   operator = op;
-  temp = operator;
   secondOperand = "";
   displaySecondOperand.innerHTML = "0";
   displayCalculation.textContent = "";
@@ -59,11 +65,16 @@ equalsButton.addEventListener("click", () => {
   if (secondOperand && operator) {
     calculationResult = operate(firstOperand, secondOperand, operator);
     displayCalculation.textContent = calculationResult;
-  } else return;
-  displayFirstOperand.textContent = "";
-  displaySecondOperand.textContent = "";
-  console.log(firstOperand);
-  console.log(secondOperand);
+
+    firstOperand = calculationResult; // Allow chaining
+    secondOperand = "";
+    operator = null;
+
+    displayFirstOperand.textContent = "";
+    displaySecondOperand.textContent = "";
+
+    justCalculated = true; // Set the flag
+  }
 });
 
 clearButton.addEventListener("click", () => {
